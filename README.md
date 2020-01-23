@@ -2,7 +2,7 @@
 ## Introduce
 * Perfect solution to reduce realm (objc) tedious write commit coding.一套减少Realm写入事务代码量的三方解决方案。
 * Good luck for one start.点赞富一生.
-* No `__block`, no `beginWriteTransaction`, no `commitWriteTransaction`.You can return methods anywhere.
+* No `__block`, no `beginWriteTransaction`, no `commitWriteTransaction`.You can return method anywhere.
 
 ## CocoaPods
 ```
@@ -48,32 +48,32 @@ pod 'Realm--'
 - 提交作用域是代码量最少的方案，但是可能会延迟提交的时机。该提交发生在当前作用域的autoreleasepool释放之时，这通常是当前runloop运行结束时。
 ### Writing scope
 ```objc
-@realm_writing_scope
+@realm_writing_scope;
 <realm>
 ```
 ### Update scope
 ```objc
-@realm_update_scope
+@realm_update_scope;
 <realm>
 <Update> /// Update = obj; Update = objs;
 ```
 ### Add scope
 ```objc
-@realm_add_scope
+@realm_add_scope;
 <realm>
 <Add> /// Add = obj; Add = objs; 
 ```
 ### Delete scope
 ```objc
-@realm_delete_scope
+@realm_delete_scope;
 <realm>
 <Delete> /// Delete = obj; Delete = objs;
 ```
 ## Switch realm
 - Change realm of current scope.It will try to commit the previous transaction.
 ```objc
-@realm_writing_scope
+@realm_writing_scope;
 ...
-@realm_switch(otherRealm)
+@realm_switch(otherRealm);
 ...
 ```
