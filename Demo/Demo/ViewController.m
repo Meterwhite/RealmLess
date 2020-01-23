@@ -9,10 +9,6 @@
 #import "ViewController.h"
 #import "Realm--.h"
 
-#include <stdlib.h>
-#include <signal.h>
-#include <stdio.h>
-
 @implementation ViewController
 
 - (void)viewDidLoad {

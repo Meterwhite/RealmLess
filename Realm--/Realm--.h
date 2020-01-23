@@ -16,7 +16,6 @@
 
 #pragma mark - Commit pool
 
-
 /**
  * These macro definitions ensure commits transaction when leaving this scope.
  * Variable 'realm' can be used in each realm pool.
@@ -62,7 +61,7 @@ autoreleasepool {           \
 
 #pragma mark - Commit scope
 /**
- * Effective in any scope.Realm transaction will be committed when autoreleapool is released.Usually at the end of the runloop.
+ * Effective in any scope.Realm transaction will be committed when autoreleapool is released.Usually at the end of a loop of the current runloop.
  * ... {
  *    @realm_writing_scope
  *    ...
@@ -95,4 +94,3 @@ RLMRealm *realm __attribute__((unused)) = [RLLDelete scopeWithPointer:&Delete];
 autoreleasepool{}           \
 [(RLLWriting *)realm switchRealm:(__VA_ARGS__)];
 #endif
-

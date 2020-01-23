@@ -10,13 +10,14 @@ pod 'Realm--'
 ```
 
 ## Realm commit pool
-- Commit pool definitions ensure commits transaction to default realm when leaving this scope.Variable 'realm' can be used in each realm pool.The variable `realm` (default realm) can be used in the commit pool.
+- Commit pool definitions ensure commits transaction to default realm when leaving this scope.The variable `realm` (default realm) can be used in the commit pool.
 - 提交池确保了离开作用域时进行提交到default realm。在提交池内可以使用变量`realm`(default realm)。
 ### Writing pool
 ```objc
 @realm_writing_pool({
     ...
     <realm> /// [realm addObject:obj];
+    return ... /// It works fine after return.
 });
 ```
 ### Update pool
@@ -44,35 +45,36 @@ pod 'Realm--'
 });
 ```
 ## Realm commit scope
-- Realm commit scope  commits transaction when autoreleapool is released.Usually at the end of the runloop. This is a minimal code solution, but may delay commit.
-- 提交作用域是代码量最少的方案，但是可能会延迟提交的时机。该提交发生在当前作用域的autoreleasepool释放之时，这通常是当前runloop运行结束时。
+- Realm commit scope  commits transaction when autoreleapool is released.Usually at the end of a loop of the current runloop. This is a minimal code solution, but may delay commit.
+- 提交作用域是代码量最少的方案，但是可能会延迟提交的时机。该提交发生在当前作用域的autoreleasepool释放之时，这通常是在当前runloop的一趟循环结束时。
 ### Writing scope
 ```objc
-@realm_writing_scope;
+@realm_writing_scope[;]
 <realm>
+return ... /// It works fine after return.
 ```
 ### Update scope
 ```objc
-@realm_update_scope;
+@realm_update_scope[;]
 <realm>
 <Update> /// Update = obj; Update = objs;
 ```
 ### Add scope
 ```objc
-@realm_add_scope;
+@realm_add_scope[;]
 <realm>
 <Add> /// Add = obj; Add = objs; 
 ```
 ### Delete scope
 ```objc
-@realm_delete_scope;
+@realm_delete_scope[;]
 <realm>
 <Delete> /// Delete = obj; Delete = objs;
 ```
 ## Switch realm
 - Change realm of current scope.It will try to commit the previous transaction.
 ```objc
-@realm_writing_scope;
+@realm_writing_scope[;]
 ...
 @realm_switch(otherRealm);
 ...
