@@ -79,7 +79,7 @@ RLMRealm *realm __attribute__((unused)) = [RLLUpdate scopeWithPointer:&Update];
 #define realm_add_scope \
 autoreleasepool{}       \
 id Add;                 \
-RLMRealm *realm __attribute__((unused)) = [RLLDelete scopeWithPointer:&Add];
+RLMRealm *realm __attribute__((unused)) = [RLLAdd scopeWithPointer:&Add];
 
 #define realm_delete_scope  \
 autoreleasepool{}           \
