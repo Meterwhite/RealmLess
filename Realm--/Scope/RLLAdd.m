@@ -19,7 +19,11 @@
                 [_realm addObject:obj];
             }
         }
-        [_realm commitWriteTransaction];
+        if(_withoutNotifying == nil) {
+            [_realm commitWriteTransaction];
+        } else {
+            [_realm commitWriteTransactionWithoutNotifying:_withoutNotifying error:nil];
+        }
 #ifdef DEBUG
         NSLog(@"realm-- : committed.");
 #endif

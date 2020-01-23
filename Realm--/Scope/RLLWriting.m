@@ -35,7 +35,11 @@
 
 - (void)dealloc {
     if([_realm inWriteTransaction]) {
-        [_realm commitWriteTransaction];
+        if(_withoutNotifying == nil) {
+            [_realm commitWriteTransaction];
+        } else {
+            [_realm commitWriteTransactionWithoutNotifying:_withoutNotifying error:nil];
+        }
 #ifdef DEBUG
         NSLog(@"realm-- : committed.");
 #endif
@@ -58,11 +62,19 @@
     }
     _realm = realm;
     if(![_realm inWriteTransaction]) {
-        [_realm beginWriteTransaction];
+        if(_withoutNotifying == nil) {
+            [_realm commitWriteTransaction];
+        } else {
+            [_realm commitWriteTransactionWithoutNotifying:_withoutNotifying error:nil];
+        }
 #ifdef DEBUG
         NSLog(@"realm-- : begging commit.");
 #endif
     }
+}
+
+- (void)setWithoutNotifying:(NSArray<RLMNotificationToken *> *)nots {
+    _withoutNotifying = nots;
 }
 
 #pragma mark - NSProxy

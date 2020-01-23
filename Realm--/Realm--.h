@@ -94,3 +94,8 @@ RLMRealm *realm __attribute__((unused)) = [RLLDelete scopeWithPointer:&Delete];
 autoreleasepool{}           \
 [(RLLWriting *)realm switchRealm:(__VA_ARGS__)];
 #endif
+
+#pragma mark -
+#define realm_without_notifying(...)    \
+autoreleasepool{}                       \
+[(RLLWriting *)realm setWithoutNotifying:(__VA_ARGS__)];

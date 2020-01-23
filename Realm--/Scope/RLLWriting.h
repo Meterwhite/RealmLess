@@ -18,8 +18,10 @@
 @public
     RLMRealm    *_realm;
     __strong id *_value;
+    NSArray<RLMNotificationToken *> * _withoutNotifying;
 }
 + (nonnull RLMRealm*)scope;
 + (nonnull RLMRealm*)scopeWithPointer:(__strong id _Nonnull *_Nonnull)ptr;
 - (void)switchRealm:(nonnull RLMRealm *)realm;
+- (void)setWithoutNotifying:(nonnull NSArray<RLMNotificationToken *> *)nots;
 @end

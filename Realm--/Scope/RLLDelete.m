@@ -1,6 +1,6 @@
 //
 //  RLLDelete.m
-//  ProjRealm--
+//  Realm--
 //
 //  Created by MeterWhite on 2020/1/21.
 //  Copyright © 2020 Meterwhite. All rights reserved.
@@ -19,7 +19,11 @@
                 [_realm deleteObject:obj];
             }
         }
-        [_realm commitWriteTransaction];
+        if(_withoutNotifying == nil) {
+            [_realm commitWriteTransaction];
+        } else {
+            [_realm commitWriteTransactionWithoutNotifying:_withoutNotifying error:nil];
+        }
 #ifdef DEBUG
         NSLog(@"realm-- : committed.");
 #endif

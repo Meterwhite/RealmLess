@@ -76,6 +76,10 @@ void yourMethod(RLMObject *obj) {
     /// ...
     [realm addObject:obj];
     /// ...
+    
+    NSArray<RLMNotificationToken *> * tokens;
+    @realm_without_notifying(tokens);
+    /// ...
 }
 
 @end
