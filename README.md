@@ -2,7 +2,7 @@
 ## Introduce
 * Perfect solution to reduce realm (objc) tedious write commit coding.一套减少Realm写入事务代码量的三方解决方案。
 * Good luck for one start.点赞富一生.
-* No `__block`, no `beginWriteTransaction`, no `commitWriteTransaction`.
+* No `__block`, no `beginWriteTransaction`, no `commitWriteTransaction`.You can return methods anywhere.
 
 ## CocoaPods
 ```
