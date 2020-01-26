@@ -10,7 +10,7 @@
 
 @implementation RLLUpdate
 
-- (void)dealloc {
+- (void)cleanup {
     if([_realm inWriteTransaction]) {
         id obj = *_value;
         if(obj) {
@@ -29,7 +29,5 @@
         NSLog(@"realm-- : committed.");
 #endif
     }
-    _value = nil;
-    _realm = nil;
 }
 @end

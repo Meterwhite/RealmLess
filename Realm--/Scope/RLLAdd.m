@@ -1,6 +1,6 @@
 //
 //  RLLAdd.m
-//  Demo
+//  Realm--
 //
 //  Created by MeterWhite on 2020/1/22.
 //  Copyright © 2020 Meterwhite. All rights reserved.
@@ -9,7 +9,7 @@
 #import "RLLAdd.h"
 
 @implementation RLLAdd
-- (void)dealloc {
+- (void)cleanup {
     if([_realm inWriteTransaction]) {
         id obj = *_value;
         if(obj){
@@ -28,7 +28,5 @@
         NSLog(@"realm-- : committed.");
 #endif
     }
-    _value = nil;
-    _realm = nil;
 }
 @end

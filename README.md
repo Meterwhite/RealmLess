@@ -1,16 +1,41 @@
 # Realm--
-## Introduce
+## Description
 * Perfect solution to reduce realm (objc) tedious write commit coding.一套减少Realm写入事务代码量的三方解决方案。
-* Good luck for one start.点赞富一生.
 * No `__block`, no `beginWriteTransaction`, no `commitWriteTransaction`.You can return method anywhere.
 
 ## CocoaPods
 ```
 pod 'Realm--'
 ```
-
+## Realm commit scope
+- Realm transaction will be committed when leaving current scope.
+- 写事务将在离开当前作用域时自动提交.
+### Writing scope
+```objc
+@realm_writing_scope[;]
+<realm>
+return ... /// It works fine after return.
+```
+### Update scope
+```objc
+@realm_update_scope[;]
+<realm>
+<Update> /// Update = obj; Update = objs;
+```
+### Add scope
+```objc
+@realm_add_scope[;]
+<realm>
+<Add> /// Add = obj; Add = objs; 
+```
+### Delete scope
+```objc
+@realm_delete_scope[;]
+<realm>
+<Delete> /// Delete = obj; Delete = objs;
+```
 ## Realm commit pool
-- Commit pool definitions ensure commits transaction to default realm when leaving this scope.The variable `realm` (default realm) can be used in the commit pool.
+- Commit pool definitions ensure commits transaction to default realm when leaving pool scope.The variable `realm` (default realm) can be used in the commit pool.
 - 提交池确保了离开作用域时进行提交到default realm。在提交池内可以使用变量`realm`(default realm)。
 ### Writing pool
 ```objc
@@ -43,33 +68,6 @@ pod 'Realm--'
     <realm>
     <Delete> /// Delete = obj; Delete = objs; 
 });
-```
-## Realm commit scope
-- Realm commit scope  commits transaction when autoreleapool is released.Usually at the end of a loop of the current runloop. This is a minimal code solution, but may delay commit.
-- 提交作用域是代码量最少的方案，但是可能会延迟提交的时机。该提交发生在当前作用域的autoreleasepool释放之时，这通常是在当前runloop的一趟循环结束时。
-### Writing scope
-```objc
-@realm_writing_scope[;]
-<realm>
-return ... /// It works fine after return.
-```
-### Update scope
-```objc
-@realm_update_scope[;]
-<realm>
-<Update> /// Update = obj; Update = objs;
-```
-### Add scope
-```objc
-@realm_add_scope[;]
-<realm>
-<Add> /// Add = obj; Add = objs; 
-```
-### Delete scope
-```objc
-@realm_delete_scope[;]
-<realm>
-<Delete> /// Delete = obj; Delete = objs;
 ```
 ## Switch realm
 - Change realm of current scope.It will try to commit the previous transaction.

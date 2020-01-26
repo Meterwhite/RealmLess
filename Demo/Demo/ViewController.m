@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  Demo
+//  Realm--
 //
 //  Created by MeterWhite on 2020/1/21.
 //  Copyright © 2020 Meterwhite. All rights reserved.
@@ -17,6 +17,35 @@
     /// Your object
     RLMObject *obj;
     NSArray *objs;
+    
+    /// Using commit scope
+    {
+        /// Here in a scope.
+        @realm_writing_scope;
+        [realm addObject:obj];
+    }
+    NSLog(@"");
+    {
+        @realm_update_scope;
+        Update = obj;
+        // Or
+        Update = objs;
+    }
+    
+    {
+        @realm_delete_scope;
+        Delete = obj;
+        // Or
+        Delete = objs;
+    }
+    
+    {
+        /// Used in autoreleasepool commits transactions immimediately.
+        @realm_add_scope;
+        Add = obj;
+        // Or
+        Add = objs;
+    }
     
     /// Using realm commit pool
     @realm_writing_pool({
@@ -37,35 +66,6 @@
         // Or
         Add = objs;
     });
-    
-    /// Using commit scope
-    {
-        /// Here in a scope.
-        @realm_writing_scope;
-        [realm addObject:obj];
-    }
-        
-    {
-        @realm_update_scope;
-        Update = obj;
-        // Or
-        Update = objs;
-    }
-    
-    {
-        @realm_delete_scope;
-        Delete = obj;
-        // Or
-        Delete = objs;
-    }
-    
-    @autoreleasepool {
-        /// Used in autoreleasepool commits transactions immimediately.
-        @realm_add_scope;
-        Add = obj;
-        // Or
-        Add = objs;
-    }
 }
 
 void yourMethod(RLMObject *obj) {

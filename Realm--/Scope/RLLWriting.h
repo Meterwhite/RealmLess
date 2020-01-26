@@ -24,4 +24,5 @@
 + (nonnull RLMRealm*)scopeWithPointer:(__strong id _Nonnull *_Nonnull)ptr;
 - (void)switchRealm:(nonnull RLMRealm *)realm;
 - (void)setWithoutNotifying:(nonnull NSArray<RLMNotificationToken *> *)nots;
+- (void)cleanup;
 @end

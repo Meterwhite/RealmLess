@@ -22,6 +22,7 @@
 /* Begin PBXFileReference section */
 		0A968B1091AEBBE986A3AE37 /* Pods-defaults-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Demo.debug.xcconfig"; path = "Target Support Files/Pods-defaults-Demo/Pods-defaults-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		0E331C4EB6A6A868503303E9 /* Pods-defaults-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Demo.release.xcconfig"; path = "Target Support Files/Pods-defaults-Demo/Pods-defaults-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		1847078923DD8D39008A8C48 /* RLLCleanUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLLCleanUp.h; sourceTree = "<group>"; };
 		18ED4E4E23D73F0E007D8AF9 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18ED4E5123D73F0E007D8AF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18ED4E5223D73F0E007D8AF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -104,14 +105,15 @@
 		18ED4E6723D73F29007D8AF9 /* Scope */ = {
 			isa = PBXGroup;
 			children = (
-				18ED4E6923D73F29007D8AF9 /* RLLUpdate.h */,
-				18ED4E6D23D73F29007D8AF9 /* RLLUpdate.m */,
-				18ED4E6C23D73F29007D8AF9 /* RLLDelete.h */,
-				18ED4E6A23D73F29007D8AF9 /* RLLDelete.m */,
-				18ED4E6823D73F29007D8AF9 /* RLLWriting.h */,
-				18ED4E6B23D73F29007D8AF9 /* RLLWriting.m */,
+				1847078923DD8D39008A8C48 /* RLLCleanUp.h */,
 				18ED4E7123D7695A007D8AF9 /* RLLAdd.h */,
 				18ED4E7223D7695A007D8AF9 /* RLLAdd.m */,
+				18ED4E6C23D73F29007D8AF9 /* RLLDelete.h */,
+				18ED4E6A23D73F29007D8AF9 /* RLLDelete.m */,
+				18ED4E6923D73F29007D8AF9 /* RLLUpdate.h */,
+				18ED4E6D23D73F29007D8AF9 /* RLLUpdate.m */,
+				18ED4E6823D73F29007D8AF9 /* RLLWriting.h */,
+				18ED4E6B23D73F29007D8AF9 /* RLLWriting.m */,
 			);
 			path = Scope;
 			sourceTree = "<group>";

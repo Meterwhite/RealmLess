@@ -33,7 +33,7 @@
     return self;
 }
 
-- (void)dealloc {
+- (void)cleanup {
     if([_realm inWriteTransaction]) {
         if(_withoutNotifying == nil) {
             [_realm commitWriteTransaction];
@@ -44,8 +44,6 @@
         NSLog(@"realm-- : committed.");
 #endif
     }
-    _value = nil;
-    _realm = nil;
 }
 
 - (RLMRealm *)realm {
@@ -79,7 +77,7 @@
 
 #pragma mark - NSProxy
 - (void)forwardInvocation:(NSInvocation *)invocation {
-    [_realm forwardInvocation:invocation];
+    [invocation invokeWithTarget:_realm];
 }
 
 - (nullable NSMethodSignature *)methodSignatureForSelector:(SEL)sel {

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "Realm--"
-  s.version      = "1.0.2"
-  s.summary      = "Prefect solution to reduce realm (objc) tedious write commit coding."
+  s.version      = "1.0.3"
+  s.summary      = "Realm write extension.Prefect solution to reduce realm (objc) tedious write commit coding."
   s.homepage     = "https://github.com/Meterwhite/Realm--"
   s.license      = "MIT"
   s.author       = { "Meterwhite" => "meterwhite@outlook.com" }
