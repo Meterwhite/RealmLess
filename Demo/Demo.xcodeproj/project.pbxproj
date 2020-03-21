@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183E1E7C23E0A5E6008C0B6C /* RLMArray+RLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E1E7B23E0A5E6008C0B6C /* RLMArray+RLL.m */; };
+		183E1E7F23E0AA11008C0B6C /* RLMResults+RLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E1E7E23E0AA11008C0B6C /* RLMResults+RLL.m */; };
 		18ED4E5323D73F0E007D8AF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED4E5223D73F0E007D8AF9 /* AppDelegate.m */; };
 		18ED4E5623D73F0E007D8AF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED4E5523D73F0E007D8AF9 /* ViewController.m */; };
 		18ED4E5823D73F12007D8AF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18ED4E5723D73F12007D8AF9 /* Assets.xcassets */; };
@@ -22,6 +24,10 @@
 /* Begin PBXFileReference section */
 		0A968B1091AEBBE986A3AE37 /* Pods-defaults-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Demo.debug.xcconfig"; path = "Target Support Files/Pods-defaults-Demo/Pods-defaults-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		0E331C4EB6A6A868503303E9 /* Pods-defaults-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Demo.release.xcconfig"; path = "Target Support Files/Pods-defaults-Demo/Pods-defaults-Demo.release.xcconfig"; sourceTree = "<group>"; };
+		183E1E7A23E0A5E6008C0B6C /* RLMArray+RLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMArray+RLL.h"; sourceTree = "<group>"; };
+		183E1E7B23E0A5E6008C0B6C /* RLMArray+RLL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RLMArray+RLL.m"; sourceTree = "<group>"; };
+		183E1E7D23E0AA11008C0B6C /* RLMResults+RLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMResults+RLL.h"; sourceTree = "<group>"; };
+		183E1E7E23E0AA11008C0B6C /* RLMResults+RLL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RLMResults+RLL.m"; sourceTree = "<group>"; };
 		1847078923DD8D39008A8C48 /* RLLCleanUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLLCleanUp.h; sourceTree = "<group>"; };
 		18ED4E4E23D73F0E007D8AF9 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18ED4E5123D73F0E007D8AF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,10 +63,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		183E1E7923E0A5BE008C0B6C /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				183E1E7A23E0A5E6008C0B6C /* RLMArray+RLL.h */,
+				183E1E7B23E0A5E6008C0B6C /* RLMArray+RLL.m */,
+				183E1E7D23E0AA11008C0B6C /* RLMResults+RLL.h */,
+				183E1E7E23E0AA11008C0B6C /* RLMResults+RLL.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		18ED4E4523D73F0E007D8AF9 = {
 			isa = PBXGroup;
 			children = (
-				18ED4E6523D73F29007D8AF9 /* Realm-- */,
+				18ED4E6523D73F29007D8AF9 /* RealmLess */,
 				18ED4E5023D73F0E007D8AF9 /* Demo */,
 				18ED4E4F23D73F0E007D8AF9 /* Products */,
 				7BA7D35C225411A9F0819387 /* Pods */,
@@ -92,14 +109,15 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		18ED4E6523D73F29007D8AF9 /* Realm-- */ = {
+		18ED4E6523D73F29007D8AF9 /* RealmLess */ = {
 			isa = PBXGroup;
 			children = (
+				183E1E7923E0A5BE008C0B6C /* Extension */,
 				18ED4E6623D73F29007D8AF9 /* Realm--.h */,
 				18ED4E6723D73F29007D8AF9 /* Scope */,
 			);
-			name = "Realm--";
-			path = "../Realm--";
+			name = RealmLess;
+			path = ../RealmLess;
 			sourceTree = "<group>";
 		};
 		18ED4E6723D73F29007D8AF9 /* Scope */ = {
@@ -248,11 +266,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183E1E7C23E0A5E6008C0B6C /* RLMArray+RLL.m in Sources */,
 				18ED4E7323D7695A007D8AF9 /* RLLAdd.m in Sources */,
 				18ED4E5623D73F0E007D8AF9 /* ViewController.m in Sources */,
 				18ED4E5E23D73F12007D8AF9 /* main.m in Sources */,
 				18ED4E6E23D73F29007D8AF9 /* RLLDelete.m in Sources */,
 				18ED4E7023D73F29007D8AF9 /* RLLUpdate.m in Sources */,
+				183E1E7F23E0AA11008C0B6C /* RLMResults+RLL.m in Sources */,
 				18ED4E5323D73F0E007D8AF9 /* AppDelegate.m in Sources */,
 				18ED4E6F23D73F29007D8AF9 /* RLLWriting.m in Sources */,
 			);
