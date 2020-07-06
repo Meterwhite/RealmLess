@@ -1,6 +1,6 @@
 # RealmLess
 ## Description
-* Perfect solution to reduce realm (objc) tedious write commit coding.一套减少Realm写入事务代码量的三方解决方案。
+* This is a perfect solution to reduce the amount and complexity of Realm(objc) writing transaction code.这是减少Realm写入事务代码量和复杂性的解决方案。
 * No `__block`, no `beginWriteTransaction`, no `commitWriteTransaction`.You can return method anywhere.
 * [Swift](https://github.com/Meterwhite/RealmLessSwift "RealmLessSwift")
 
