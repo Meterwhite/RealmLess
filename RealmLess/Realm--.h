@@ -24,21 +24,21 @@
  * }
  */
 #define realm_writing_scope \
-autoreleasepool{}           \
+rll_keywordify              \
 RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLWriting scope];
 
 #define realm_update_scope  \
-autoreleasepool{}           \
+rll_keywordify              \
 id Update;                  \
 RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLUpdate scopeWithPointer:&Update];
 
 #define realm_add_scope \
-autoreleasepool{}       \
+rll_keywordify              \
 id Add;                 \
 RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLAdd scopeWithPointer:&Add];
 
 #define realm_delete_scope  \
-autoreleasepool{}           \
+rll_keywordify              \
 id Delete;                  \
 RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLDelete scopeWithPointer:&Delete];
 
@@ -47,12 +47,12 @@ RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLDelete scopeW
  * Switch realm in current scope.It will try to commit the previous transaction before.
  */
 #define realm_switch(...)   \
-autoreleasepool{}           \
+rll_keywordify              \
 [(RLLWriting *)realm switchRealm:(__VA_ARGS__)];
 
 #pragma mark -
 #define realm_without_notifying(...)    \
-autoreleasepool{}                       \
+rll_keywordify                          \
 [(RLLWriting *)realm setWithoutNotifying:(__VA_ARGS__)];
 
 #pragma mark - Commit pool
@@ -76,27 +76,33 @@ autoreleasepool{}                       \
  * });
  */
 #define realm_writing_pool(...) \
-autoreleasepool{} {           \
+rll_keywordify {            \
     @realm_writing_scope    \
     __VA_ARGS__             \
 }
 
-#define realm_update_pool(...)  \
-autoreleasepool{} {           \
+#define realm_update_pool(...) \
+rll_keywordify {            \
     @realm_update_scope     \
     __VA_ARGS__             \
 }
 
-#define realm_delete_pool(...)  \
-autoreleasepool{} {           \
+#define realm_delete_pool(...) \
+rll_keywordify {            \
     @realm_delete_scope     \
     __VA_ARGS__             \
 }
 
 #define realm_add_pool(...) \
-autoreleasepool{} {           \
+rll_keywordify {            \
     @realm_add_scope        \
     __VA_ARGS__             \
 }
+
+#if DEBUG
+#define rll_keywordify  autoreleasepool {}
+#else
+#define rll_keywordify  try {} @catch (...) {}
+#endif
 
 #endif /// RealmLess
