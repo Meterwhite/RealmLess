@@ -2,6 +2,7 @@
 ## Description
 * This is a perfect solution to reduce the amount and complexity of Realm(objc) writing transaction code.(这是减少Realm写入事务代码量和复杂性的解决方案。)
 * No `beginWriteTransaction`, no `commitWriteTransaction`,no `__block`.You can return method anywhere.
+* Star star star.
 * [Swift](https://github.com/Meterwhite/RealmLessSwift "RealmLessSwift")
 
 ## CocoaPods
