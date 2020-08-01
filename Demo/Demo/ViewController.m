@@ -27,24 +27,24 @@
     NSLog(@"");
     {
         @realm_update_scope;
-        Update = obj;
+        UpdateFor = obj;
         // Or
-        Update = objs;
+        UpdateFor = objs;
     }
     
     {
         @realm_delete_scope;
-        Delete = obj;
+        DeleteFor = obj;
         // Or
-        Delete = objs;
+        DeleteFor = objs;
     }
     
     {
         /// Used in autoreleasepool commits transactions immimediately.
         @realm_add_scope;
-        Add = obj;
+        AddFor = obj;
         // Or
-        Add = objs;
+        AddFor = objs;
     }
     
     /// Using realm commit pool
@@ -52,19 +52,19 @@
         [realm addOrUpdateObject:obj];
     });
     @realm_update_pool({
-        Update = obj;
+        UpdateFor = obj;
         // Or
-        Update = objs;
+        UpdateFor = objs;
     });
     @realm_delete_pool({
-        Delete = obj;
+        DeleteFor = obj;
         // Or
-        Delete = objs;
+        DeleteFor = objs;
     });
     @realm_add_pool({
-        Add = obj;
+        AddFor = obj;
         // Or
-        Add = objs;
+        AddFor = objs;
     });
 }
 

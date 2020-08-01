@@ -15,11 +15,11 @@
 #import "RLLDelete.h"
 #import "RLLAdd.h"
 
-#pragma mark - Commit scope
+#pragma mark - Realm Commit Scope
 /**
  * Realm transaction will be committed when leaving current scope.
- * scope {
- *    @realm_writing_scope;
+ * scope
+ * { @realm_writing_scope;
  *    ...
  * }
  */
@@ -29,18 +29,18 @@ RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLWriting scope
 
 #define realm_update_scope  \
 rll_keywordify              \
-id Update;                  \
-RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLUpdate scopeWithPointer:&Update];
+id UpdateFor;                  \
+RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLUpdate scopeWithPointer:&UpdateFor];
 
 #define realm_add_scope \
 rll_keywordify              \
-id Add;                 \
-RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLAdd scopeWithPointer:&Add];
+id AddFor;                 \
+RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLAdd scopeWithPointer:&AddFor];
 
 #define realm_delete_scope  \
 rll_keywordify              \
-id Delete;                  \
-RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLDelete scopeWithPointer:&Delete];
+id DeleteFor;                  \
+RLMRealm *realm __attribute__((cleanup(rll_cleanup),unused)) = [RLLDelete scopeWithPointer:&DeleteFor];
 
 #pragma mark - Change realm of current scope
 /**
@@ -55,7 +55,7 @@ rll_keywordify              \
 rll_keywordify                          \
 [(RLLWriting *)realm setWithoutNotifying:(__VA_ARGS__)];
 
-#pragma mark - Commit pool
+#pragma mark - Realm Commit Pool
 /**
  * These macro definitions ensure commits transaction when leaving this scope.
  * Variable 'realm' can be used in each commit pool.
@@ -64,15 +64,15 @@ rll_keywordify                          \
  * });
  * @realm_update_pool({
  *     ...
- *     Update = ...
+ *     UpdateFor = ...
  * });
  * @realm_delete_pool({
  *     ...
- *     Delete = ...
+ *     DeleteFor = ...
  * });
  * @realm_add_pool({
  *     ...
- *     Add = ...
+ *     AddFor = ...
  * });
  */
 #define realm_writing_pool(...) \

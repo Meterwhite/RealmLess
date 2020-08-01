@@ -32,23 +32,23 @@ pod 'RealmLess'
 <realm>    /// [realm ....];
 return ... /// It works fine after return.
 ```
-### Update scope 更新或添加作用域
+### Update scope (更新或添加作用域)
 ```objc
 @realm_update_scope[;]
 <realm>
-<Update> /// Update = obj; Update = objs;
+<UpdateFor> /// UpdateFor = obj; UpdateFor = objs;
 ```
-### Add scope 添加作用域
+### Add scope (添加作用域)
 ```objc
 @realm_add_scope[;]
 <realm>
-<Add> /// Add = obj; Add = objs; 
+<AddFor> /// AddFor = obj; AddFor = objs; 
 ```
-### Delete scope 删除作用域
+### Delete scope (删除作用域)
 ```objc
 @realm_delete_scope[;]
 <realm>
-<Delete> /// Delete = obj; Delete = objs;
+<DeleteFor> /// DeleteFor = obj; DeleteFor = objs;
 ```
 ## Realm commit pool
 - Commit pool definitions ensure commits transaction to default realm when leaving pool scope.The variable `realm` (default realm) can be used in the commit pool.
@@ -66,7 +66,7 @@ return ... /// It works fine after return.
 @realm_update_pool({
     ...
     <realm>
-    <Update> /// Update = obj; Update = objs;
+    <UpdateFor> /// UpdateFor = obj; UpdateFor = objs;
 });
 ```
 ### Realm add pool
@@ -74,7 +74,7 @@ return ... /// It works fine after return.
 @realm_add_pool({
     ...
     <realm>
-    <Add> /// Add = obj; Add = objs; 
+    <AddFor> /// AddFor = obj; AddFor = objs; 
 });
 ```
 ### Realm delete pool
@@ -82,7 +82,7 @@ return ... /// It works fine after return.
 @realm_delete_pool({
     ...
     <realm>
-    <Delete> /// Delete = obj; Delete = objs; 
+    <DeleteFor> /// DeleteFor = obj; DeleteFor = objs; 
 });
 ```
 ## Switch realm variable (切换realm变量)
