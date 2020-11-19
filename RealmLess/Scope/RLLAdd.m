@@ -4,29 +4,21 @@
 //
 //  Created by MeterWhite on 2020/1/22.
 //  Copyright © 2020 Meterwhite. All rights reserved.
+//  https://github.com/Meterwhite/RealmLess
 //
 
 #import "RLLAdd.h"
 
 @implementation RLLAdd
-- (void)cleanup {
-    if([_realm inWriteTransaction]) {
-        id obj = *_value;
-        if(obj){
-            if([obj conformsToProtocol:@protocol(NSFastEnumeration)]){
-                [_realm addObjects:obj];
-            } else {
-                [_realm addObject:obj];
-            }
-        }
-        if(_withoutNotifying == nil) {
-            [_realm commitWriteTransaction];
+
+- (void)willCommit {
+    id obj = *_uobj;
+    if(obj){
+        if([obj conformsToProtocol:@protocol(NSFastEnumeration)]){
+            [self.realm addObjects:obj];
         } else {
-            [_realm commitWriteTransactionWithoutNotifying:_withoutNotifying error:nil];
+            [self.realm addObject:obj];
         }
-#ifdef DEBUG
-        NSLog(@"realm-- : committed.");
-#endif
     }
 }
 @end

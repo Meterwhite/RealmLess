@@ -4,29 +4,20 @@
 //
 //  Created by MeterWhite on 2020/1/21.
 //  Copyright © 2020 Meterwhite. All rights reserved.
+//  https://github.com/Meterwhite/RealmLess
 //
 
 #import "RLLDelete.h"
 @implementation RLLDelete
 
-- (void)cleanup {
-    if([_realm inWriteTransaction]) {
-        id obj = *_value;
-        if(obj) {
-            if([obj conformsToProtocol:@protocol(NSFastEnumeration)]){
-                [_realm deleteObjects:obj];
-            } else {
-                [_realm deleteObject:obj];
-            }
-        }
-        if(_withoutNotifying == nil) {
-            [_realm commitWriteTransaction];
+- (void)willCommit {
+    id obj = *_uobj;
+    if(obj) {
+        if([obj conformsToProtocol:@protocol(NSFastEnumeration)]){
+            [self.realm deleteObjects:obj];
         } else {
-            [_realm commitWriteTransactionWithoutNotifying:_withoutNotifying error:nil];
+            [self.realm deleteObject:obj];
         }
-#ifdef DEBUG
-        NSLog(@"realm-- : committed.");
-#endif
     }
 }
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		183E1E7C23E0A5E6008C0B6C /* RLMArray+RLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E1E7B23E0A5E6008C0B6C /* RLMArray+RLL.m */; };
 		183E1E7F23E0AA11008C0B6C /* RLMResults+RLL.m in Sources */ = {isa = PBXBuildFile; fileRef = 183E1E7E23E0AA11008C0B6C /* RLMResults+RLL.m */; };
+		189431F825663014008B2572 /* TPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 189431F725663014008B2572 /* TPerson.m */; };
 		18ED4E5323D73F0E007D8AF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED4E5223D73F0E007D8AF9 /* AppDelegate.m */; };
 		18ED4E5623D73F0E007D8AF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ED4E5523D73F0E007D8AF9 /* ViewController.m */; };
 		18ED4E5823D73F12007D8AF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18ED4E5723D73F12007D8AF9 /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 		183E1E7D23E0AA11008C0B6C /* RLMResults+RLL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RLMResults+RLL.h"; sourceTree = "<group>"; };
 		183E1E7E23E0AA11008C0B6C /* RLMResults+RLL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RLMResults+RLL.m"; sourceTree = "<group>"; };
 		1847078923DD8D39008A8C48 /* RLLCleanUp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RLLCleanUp.h; sourceTree = "<group>"; };
+		189431F625663014008B2572 /* TPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPerson.h; sourceTree = "<group>"; };
+		189431F725663014008B2572 /* TPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TPerson.m; sourceTree = "<group>"; };
 		18ED4E4E23D73F0E007D8AF9 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18ED4E5123D73F0E007D8AF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18ED4E5223D73F0E007D8AF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,9 +77,19 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		189431F525662FF1008B2572 /* TClass */ = {
+			isa = PBXGroup;
+			children = (
+				189431F625663014008B2572 /* TPerson.h */,
+				189431F725663014008B2572 /* TPerson.m */,
+			);
+			path = TClass;
+			sourceTree = "<group>";
+		};
 		18ED4E4523D73F0E007D8AF9 = {
 			isa = PBXGroup;
 			children = (
+				189431F525662FF1008B2572 /* TClass */,
 				18ED4E6523D73F29007D8AF9 /* RealmLess */,
 				18ED4E5023D73F0E007D8AF9 /* Demo */,
 				18ED4E4F23D73F0E007D8AF9 /* Products */,
@@ -275,6 +288,7 @@
 				183E1E7F23E0AA11008C0B6C /* RLMResults+RLL.m in Sources */,
 				18ED4E5323D73F0E007D8AF9 /* AppDelegate.m in Sources */,
 				18ED4E6F23D73F29007D8AF9 /* RLLWriting.m in Sources */,
+				189431F825663014008B2572 /* TPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

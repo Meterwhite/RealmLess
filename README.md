@@ -1,7 +1,9 @@
 # RealmLess 
 ## Description
-* Streamlined scheme of realm commit transaction.(Realm的提交事务的精简方案。)
-* No `beginWriteTransaction`, no `commitWriteTransaction`,no `__block`.You can return method anywhere.
+* Solutions to simplify Realm(ObjC) transactions.(简化Realm事务的解决方案)
+* No `beginWriteTransaction`, no `commitWriteTransaction`,no `__block`.You can return method anywhere.Nested commit transactions will not throw exceptions.
+* For developers who are not familiar with realm, using realmless can avoid many bugs.
+* Give a star so god bless you.
 * [Swift](https://github.com/Meterwhite/RealmLessSwift "RealmLessSwift")
 
 ## CocoaPods
@@ -9,88 +11,108 @@
 pod 'RealmLess'
 ```
 
-## Head file
+## Header
 ```
 #import <RealmLess/Realm--.h>
 ```
 
-## Realm commit scope (具有提交能力作用域)
+## RealmLess transaction scope (RealmLess事务作用域)
 - > Any `{}` is a scope, which is very important for this project，in normal times this is forgotten.
     >> 任何地方书写的`{}`都是作用域，这对于本项目十分重要。在平常这却是被淡忘的。
     
-- > Realm transaction will be committed when leaving current scope.
+- > RealmLess transaction will be committed when leaving current scope.
     >> 写事务将在离开当前作用域时自动提交.
 
-- > Variable realm can be used in scope
-    >> 在作用域里面可以使用变量`realm`
+- > RealmLess variable `rll_realm` is provided in Realm-- scope to ensure the possibility of all operations.
+    >> 在Realm--作用域中提供了realm变量`rll_realm`来保证所有操作的可能性。
     
-- > The scope of different functions can also use corresponding variables such as: Add, Update,...
-    >> 不同功能的作用域还可以使用对应的变量如：Add,Update,...
-### Writing scope (写作用域)
+- > In RealmLess scopes can be nested without throwing exceptions, and nested scopes will be merged. This solves a big trouble.
+    >> 在RealmLess作用域是可以被嵌套而不会抛出异常的，嵌套的作用域会被合并。这解决了一个很大烦恼。
+    
+### Basic RealmLess  scope (写作用域)
 ```objc
-@realm_writing_scope[;]
-<realm>    /// [realm ....];
-return ... /// It works fine after return.
+@realm_writing_scope
+[rll_realm addObject:YourObject];
 ```
-### Update scope (更新或添加作用域)
+### RealmLess Update scope (更新或添加作用域)
 ```objc
-@realm_update_scope[;]
-<realm>
-<UpdateFor> /// UpdateFor = obj; UpdateFor = objs;
+@realm_update_scope
+[rll_realm addObject:YourObject];
+RLLUpdate_obj = YourObject;
 ```
-### Add scope (添加作用域)
+### RealmLess Add scope (添加作用域)
 ```objc
-@realm_add_scope[;]
-<realm>
-<AddFor> /// AddFor = obj; AddFor = objs; 
+@realm_add_scope
+RLLAdd_obj = YourObject;
 ```
-### Delete scope (删除作用域)
+### RealmLess Delete scope (删除作用域)
 ```objc
-@realm_delete_scope[;]
-<realm>
-<DeleteFor> /// DeleteFor = obj; DeleteFor = objs;
+@realm_delete_scope
+RLLDelete_obj = YourObject;
 ```
-## Realm commit pool
+## RealmLess transaction pool / 作用域池
 - Commit pool definitions ensure commits transaction to default realm when leaving pool scope.The variable `realm` (default realm) can be used in the commit pool.
 - 提交池确保了离开作用域时进行提交到default realm。在提交池内可以使用变量`realm`(default realm)。
 ### Realm writing pool
 ```objc
 @realm_writing_pool({
-    ...
-    <realm>    /// [realm addObject:obj];
-    return ... /// It works fine after return.
+    [rll_realm addObject:YourObject];
 });
 ```
-### Realm update pool
+### RealmLess update pool
 ```objc
 @realm_update_pool({
     ...
-    <realm>
-    <UpdateFor> /// UpdateFor = obj; UpdateFor = objs;
 });
 ```
-### Realm add pool
+### RealmLess add pool
 ```objc
 @realm_add_pool({
     ...
-    <realm>
-    <AddFor> /// AddFor = obj; AddFor = objs; 
 });
 ```
-### Realm delete pool
+### RealmLess delete pool
 ```objc
 @realm_delete_pool({
     ...
-    <realm>
-    <DeleteFor> /// DeleteFor = obj; DeleteFor = objs; 
 });
 ```
-## Switch realm variable (切换realm变量)
+## Switch realm variable (切换realm文件)
 - > Change realm variable of current scope.It will try to commit the previous transaction.
     >> 在当前作用域内使用新的realm变量，这会将之前的事务提交。
 ```objc
-@realm_writing_scope[;]
+@realm_writing_scope
 ...
-@realm_switch(otherRealm);
+@realm_switch(New Realm);
 ...
+```
+
+## Nested / 嵌套
+```objc
+{ @realm_writing_scope
+  (第一段事务 / First transaction)
+  @realm_commit_up // The first transaction takes effect immediately so that the changes can be queried in the second transaction / 第一段事务立即生效从而可以在第二段事务中查询到变更
+  (第二段事务 / Second transaction)
+  @realm_commit_up
+  (第三段事务 / Third transaction)
+}
+
+
+@realm_writing_pool({
+    (第一段事务 / First transaction)
+    @realm_commit_up // The first transaction takes effect immediately so that the changes can be queried in the second transaction / 第一段事务立即生效从而可以在第二段事务中查询到变更
+    (第二段事务 / Second transaction)
+});
+
+```
+
+## Use RealmLess scoped objects / 使用RealmLess作用域对象
+```objc
+{
+    RLLScopeObj(rll);
+    [rll.realm addObject:obj];
+    [rll nestedCommit];
+    [rll.realm addObject:obj];
+    [rll nestedCommit];
+}
 ```
