@@ -17,8 +17,6 @@ pod 'RealmLess'
 ```
 
 ## RealmLess transaction scope (RealmLess事务作用域)
-- > Any `{}` is a scope, which is very important for this project，in normal times this is forgotten.
-    >> 任何地方书写的`{}`都是作用域，这对于本项目十分重要。在平常这却是被淡忘的。
     
 - > RealmLess transaction will be committed when leaving current scope.
     >> 写事务将在离开当前作用域时自动提交.
